@@ -143,7 +143,7 @@ def main(args):
 def setup():
         parser=argparse.ArgumentParser('argument parser')
         
-        parser.add_argument('--lr',type=float,default=0.1)
+        parser.add_argument('--lr',type=float,default=30)
         parser.add_argument('--epochs',type=int,default=40)
         parser.add_argument('--k',type=int,default=512)
         parser.add_argument('--embed_dim',type=int,default=128)
@@ -167,7 +167,7 @@ def setup():
         parser.add_argument('--alpha',type=float,default=2)
         parser.add_argument('--beta',type=float,default=1)
         parser.add_argument('--dropoutw',type=float,default=0.5)
-        parser.add_argument('dev_batch_size',type=int,default=10)
+        parser.add_argument('--dev_batch_size',type=int,default=10)
         parser.add_argument('--m',type=int,default=400)
         parser.add_argument('--clip',type=float,default=0.25)
         
