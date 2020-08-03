@@ -13,6 +13,7 @@ get_batch,repackage_hidden
    
 def validate(dev_data,model,seq_len=100):
         model.eval()
+        model.drop.training=False
         lossFunction=nn.CrossEntropyLoss()
         iters=dev_data.shape[0]//seq_len
         loss,perplexity=0,0
@@ -39,6 +40,7 @@ def train(data_dev,data_train,model,args):
         
         for epoch in range(args.epochs):
                 model.train()
+                model.drop.training=True
                 hidden=[None for _ in range(model.n_layers)]
                 i,batch=0,0
                 max_loss=1000000000
