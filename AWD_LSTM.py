@@ -7,9 +7,10 @@ from embeddings import Adaptive_Tied_Input_Softmax,DeFINE
 class VariationalDropout(nn.Module):
         def __init__(self):
                 super(VariationalDropout,self).__init__()
+                self.training=True
                 
         def forward(self,x,dropout,training=True):
-                if not training:
+                if not self.training:
                         return x
                     
                 mask=x.data.new(x.shape[0],1,x.shape[2]).bernoulli_(1-dropout)
@@ -46,7 +47,8 @@ class AWD_LSTM(nn.Module):
                 
         def forward(self,input,hidden):
                 input_=input
-                # self.embeddings.embed_dropout(self.dropout_embed)
+                if self.drop.training:
+                        self.embeddings.embed_dropout(self.dropout_embed)
                 embeddings=self.embeddings.get_embeds(input)
                 embeddings=self.define(embeddings)
                 embeddings=self.drop(embeddings,self.dropouti)
