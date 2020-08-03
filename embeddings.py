@@ -24,7 +24,7 @@ class Adaptive_Tied_Input_Softmax(nn.Module):
                         resize_((embed.weight.shape[0],1)). \
                         bernoulli_(1-p).expand_as(embed.weight)/(1-p)
                         masked_embed_weight=mask*embed.weight
-                        embed.weight=masked_embed_weight
+                        embed.weight=nn.Parameter(masked_embed_weight)
                         
                         padding_idx=embed.padding_idx
                         if padding_idx is None:
