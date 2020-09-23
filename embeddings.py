@@ -88,12 +88,12 @@ class DeFINE(nn.Module):
                 super(DeFINE,self).__init__()
                 self.g_list=g_list
                 self.weights=nn.ModuleList()
-                mapping=(k-n)//(N-1)+1
+                mapping=(k-n)//(N)
                 for i,g in enumerate(g_list):
                         self.weights. \
                         append(nn.Linear((n+i*mapping+n*(i!=0))//g,(n+(i+1)*mapping)//g))
                         
-                self.finalProj=nn.Linear(n+(N-1)*mapping,m)
+                self.finalProj=nn.Linear(n+(N)*mapping,m)
                         
         def forward(self,embeddings):
                 original=embeddings

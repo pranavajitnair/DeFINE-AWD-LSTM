@@ -132,7 +132,7 @@ def main(args):
         test_data=test_data.cuda()
         
         vocab_sizes=[sz1,sz2,sz3]
-        g_list=[int(2**(7-i)) for i in range(args.N-1)]
+        g_list=[int(2**(args.N-i)) for i in range(args.N)]
         model=AWD_LSTM(args.embed_dim,args.h_size,args.layers,
                      vocab_sizes,args.m,args.k,args.N,g_list,args.n_layers,
                      args.dropouti,args.dropouth,
@@ -147,7 +147,7 @@ def setup():
         
         parser.add_argument('--lr',type=float,default=30)
         parser.add_argument('--epochs',type=int,default=40)
-        parser.add_argument('--k',type=int,default=512)
+        parser.add_argument('--k',type=int,default=1024)
         parser.add_argument('--embed_dim',type=int,default=128)
         parser.add_argument('--h_size',type=int,default=256)
         parser.add_argument('--layers',type=int,default=3)
@@ -159,7 +159,7 @@ def setup():
         parser.add_argument('--dropouth',type=float,default=0.3)
         parser.add_argument('--dropout',type=float,default=0.4)
         parser.add_argument('--dropout_embed',type=float,default=0.1)
-        parser.add_argument('--N',type=int,default=8)
+        parser.add_argument('--N',type=int,default=7)
         parser.add_argument('--t1',type=int,default=1000)
         parser.add_argument('--t2',type=int,default=100)
         parser.add_argument('--n0',type=int,default=5)
